@@ -1,0 +1,139 @@
+<!-- Root Finding Methods Section -->
+<section id="root-finding" class="section">
+    <div class="section-header">
+        <h2>Root Finding Methods</h2>
+        <p>Find roots of equations using various numerical methods</p>
+    </div>
+
+    <div class="method-selector">
+        <button class="btn btn--secondary" onclick="selectMethod('fixed-point')">Fixed Point</button>
+        <button class="btn btn--secondary" onclick="selectMethod('newton-raphson')">Newton-Raphson</button>
+        <button class="btn btn--secondary" onclick="selectMethod('bisection')">Bisection</button>
+        <button class="btn btn--secondary" onclick="selectMethod('secant')">Secant</button>
+    </div>
+
+    <div class="method-content">
+        <!-- Fixed Point Iteration -->
+        <div id="fixed-point" class="method-panel">
+            <h3>Fixed Point Iteration</h3>
+            <p>Formula: x<sub>k+1</sub> = f(x<sub>k</sub>)</p>
+            <div class="input-form">
+                <div class="form-group">
+                    <label for="fp-function" class="form-label">Function f(x):</label>
+                    <input type="text" id="fp-function" class="form-control" placeholder="x^2 - 2" value="x^2 - 2">
+                </div>
+                <div class="form-group">
+                    <label for="fp-initial" class="form-label">Initial Guess:</label>
+                    <input type="number" id="fp-initial" class="form-control" value="1.5" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="fp-tolerance" class="form-label">Tolerance:</label>
+                    <input type="number" id="fp-tolerance" class="form-control" value="1e-6" step="1e-6">
+                </div>
+                <div class="form-group">
+                    <label for="fp-max-iter" class="form-label">Max Iterations:</label>
+                    <input type="number" id="fp-max-iter" class="form-control" value="100">
+                </div>
+                <button class="btn btn--primary" onclick="runFixedPoint()">Run</button>
+            </div>
+        </div>
+
+        <!-- Newton-Raphson Method -->
+        <div id="newton-raphson" class="method-panel">
+            <h3>Newton-Raphson Method</h3>
+            <p>Formula: x<sub>k+1</sub> = x<sub>k</sub> - f(x<sub>k</sub>)/f'(x<sub>k</sub>)</p>
+            <div class="input-form">
+                <div class="form-group">
+                    <label for="nr-function" class="form-label">Function f(x):</label>
+                    <input type="text" id="nr-function" class="form-control" placeholder="x^2 - 2" value="x^2 - 2">
+                </div>
+                <div class="form-group">
+                    <label for="nr-derivative" class="form-label">Derivative f'(x):</label>
+                    <input type="text" id="nr-derivative" class="form-control" placeholder="2*x" value="2*x">
+                </div>
+                <div class="form-group">
+                    <label for="nr-initial" class="form-label">Initial Guess:</label>
+                    <input type="number" id="nr-initial" class="form-control" value="1.5" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="nr-tolerance" class="form-label">Tolerance:</label>
+                    <input type="number" id="nr-tolerance" class="form-control" value="1e-6" step="1e-6">
+                </div>
+                <div class="form-group">
+                    <label for="nr-max-iter" class="form-label">Max Iterations:</label>
+                    <input type="number" id="nr-max-iter" class="form-control" value="100">
+                </div>
+                <button class="btn btn--primary" onclick="runNewtonRaphson()">Run</button>
+            </div>
+        </div>
+
+        <!-- Bisection Method -->
+        <div id="bisection" class="method-panel">
+            <h3>Bisection Method</h3>
+            <p>Halves interval [a,b] where f(a)f(b) < 0</p>
+            <div class="input-form">
+                <div class="form-group">
+                    <label for="bis-function" class="form-label">Function f(x):</label>
+                    <input type="text" id="bis-function" class="form-control" placeholder="x^2 - 2" value="x^2 - 2">
+                </div>
+                <div class="form-group">
+                    <label for="bis-a" class="form-label">Left Endpoint (a):</label>
+                    <input type="number" id="bis-a" class="form-control" value="0" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="bis-b" class="form-label">Right Endpoint (b):</label>
+                    <input type="number" id="bis-b" class="form-control" value="2" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="bis-tolerance" class="form-label">Tolerance:</label>
+                    <input type="number" id="bis-tolerance" class="form-control" value="1e-6" step="1e-6">
+                </div>
+                <div class="form-group">
+                    <label for="bis-max-iter" class="form-label">Max Iterations:</label>
+                    <input type="number" id="bis-max-iter" class="form-control" value="100">
+                </div>
+                <button class="btn btn--primary" onclick="runBisection()">Run</button>
+            </div>
+        </div>
+
+        <!-- Secant Method -->
+        <div id="secant" class="method-panel">
+            <h3>Secant Method</h3>
+            <p>Formula: x<sub>k+1</sub> = x<sub>k</sub> - f(x<sub>k</sub>)(x<sub>k</sub>-x<sub>k-1</sub>)/(f(x<sub>k</sub>)-f(x<sub>k-1</sub>))</p>
+            <div class="input-form">
+                <div class="form-group">
+                    <label for="sec-function" class="form-label">Function f(x):</label>
+                    <input type="text" id="sec-function" class="form-control" placeholder="x^2 - 2" value="x^2 - 2">
+                </div>
+                <div class="form-group">
+                    <label for="sec-initial0" class="form-label">Initial Guess x₀:</label>
+                    <input type="number" id="sec-initial0" class="form-control" value="1" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="sec-initial1" class="form-label">Initial Guess x₁:</label>
+                    <input type="number" id="sec-initial1" class="form-control" value="1.5" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="sec-tolerance" class="form-label">Tolerance:</label>
+                    <input type="number" id="sec-tolerance" class="form-control" value="1e-6" step="1e-6">
+                </div>
+                <div class="form-group">
+                    <label for="sec-max-iter" class="form-label">Max Iterations:</label>
+                    <input type="number" id="sec-max-iter" class="form-control" value="100">
+                </div>
+                <button class="btn btn--primary" onclick="runSecant()">Run</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <div class="results-table">
+            <h3>Iteration Results</h3>
+            <div id="iterations-table"></div>
+        </div>
+        <div class="chart-container">
+            <h3>Convergence Plot</h3>
+            <canvas id="convergence-chart"></canvas>
+        </div>
+    </div>
+</section>

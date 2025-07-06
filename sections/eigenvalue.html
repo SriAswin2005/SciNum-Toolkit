@@ -1,0 +1,48 @@
+<!-- Eigenvalue Problems Section -->
+<section id="eigenvalue" class="section">
+    <div class="section-header">
+        <h2>Eigenvalue Problems</h2>
+        <p>Find dominant eigenvalue and eigenvector using the Power Method</p>
+    </div>
+
+    <div class="eigenvalue-content">
+        <h3>Power Method</h3>
+        <p>Iterative method: y<sup>(k)</sup> = Ax<sup>(k-1)</sup>, then normalize</p>
+
+        <div class="matrix-input">
+            <h3>Matrix Input</h3>
+            <div class="form-group">
+                <label for="eigen-matrix-size" class="form-label">Matrix Size:</label>
+                <select id="eigen-matrix-size" class="form-control" onchange="generateEigenMatrixInputs()">
+                    <option value="2">2x2</option>
+                    <option value="3" selected>3x3</option>
+                    <option value="4">4x4</option>
+                </select>
+            </div>
+            <div id="eigen-matrix-inputs"></div>
+        </div>
+
+        <div class="input-form">
+            <div class="form-group">
+                <label for="eigen-tolerance" class="form-label">Tolerance:</label>
+                <input type="number" id="eigen-tolerance" class="form-control" value="1e-6" step="1e-6">
+            </div>
+            <div class="form-group">
+                <label for="eigen-max-iter" class="form-label">Max Iterations:</label>
+                <input type="number" id="eigen-max-iter" class="form-control" value="100">
+            </div>
+            <button class="btn btn--primary" onclick="runPowerMethod()">Run Power Method</button>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <div class="eigen-results">
+            <h3>Results</h3>
+            <div id="eigen-solution"></div>
+        </div>
+        <div class="chart-container">
+            <h3>Eigenvalue Convergence</h3>
+            <canvas id="eigen-convergence-chart"></canvas>
+        </div>
+    </div>
+</section>

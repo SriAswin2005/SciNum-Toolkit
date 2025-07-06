@@ -1,0 +1,30 @@
+<!-- Convergence Analysis Section -->
+<section id="convergence" class="section">
+    <div class="section-header">
+        <h2>Convergence Analysis</h2>
+        <p>Compare convergence rates of different numerical methods</p>
+    </div>
+
+    <div class="convergence-info">
+        <div class="card">
+            <h3>Linear Convergence</h3>
+            <p>|x<sub>k+1</sub> - x*| ≤ C|x<sub>k</sub> - x*| where 0 < C < 1</p>
+        </div>
+        <div class="card">
+            <h3>Superlinear Convergence</h3>
+            <p>lim(k→∞) |x<sub>k+1</sub> - x*|/|x<sub>k</sub> - x*| = 0</p>
+        </div>
+        <div class="card">
+            <h3>Quadratic Convergence</h3>
+            <p>|x<sub>k+1</sub> - x*| ≤ C|x<sub>k</sub> - x*|²</p>
+        </div>
+    </div>
+
+    <div class="comparison-section">
+        <h3>Convergence Rate Comparison</h3>
+        <div class="chart-container">
+            <canvas id="comparison-chart"></canvas>
+        </div>
+        <button class="btn btn--primary" onclick="generateComparisonChart()">Generate Comparison</button>
+    </div>
+</section>

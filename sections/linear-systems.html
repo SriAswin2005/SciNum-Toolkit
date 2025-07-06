@@ -1,0 +1,88 @@
+<!-- Linear Systems Section -->
+<section id="linear-systems" class="section">
+    <div class="section-header">
+        <h2>Linear Systems</h2>
+        <p>Solve systems of linear equations Ax = b</p>
+    </div>
+
+    <div class="method-selector">
+        <button class="btn btn--secondary" onclick="selectLinearMethod('gaussian')">Gaussian Elimination</button>
+        <button class="btn btn--secondary" onclick="selectLinearMethod('lu')">LU Factorization</button>
+        <button class="btn btn--secondary" onclick="selectLinearMethod('jacobi')">Jacobi</button>
+        <button class="btn btn--secondary" onclick="selectLinearMethod('gauss-seidel')">Gauss-Seidel</button>
+    </div>
+
+    <div class="matrix-input">
+        <h3>Matrix Input</h3>
+        <div class="form-group">
+            <label for="matrix-size" class="form-label">Matrix Size:</label>
+            <select id="matrix-size" class="form-control" onchange="generateMatrixInputs()">
+                <option value="2">2x2</option>
+                <option value="3" selected>3x3</option>
+                <option value="4">4x4</option>
+            </select>
+        </div>
+        <div id="matrix-inputs"></div>
+    </div>
+
+    <div class="linear-content">
+        <!-- Gaussian Elimination -->
+        <div id="gaussian" class="method-panel">
+            <h3>Gaussian Elimination</h3>
+            <p>Direct method using forward elimination and back substitution</p>
+            <button class="btn btn--primary" onclick="runGaussian()">Solve</button>
+        </div>
+
+        <!-- LU Factorization -->
+        <div id="lu" class="method-panel">
+            <h3>LU Factorization</h3>
+            <p>Matrix factorization A = LU</p>
+            <button class="btn btn--primary" onclick="runLU()">Solve</button>
+        </div>
+
+        <!-- Jacobi Method -->
+        <div id="jacobi" class="method-panel">
+            <h3>Jacobi Method</h3>
+            <p>Iterative method for diagonally dominant matrices</p>
+            <div class="input-form">
+                <div class="form-group">
+                    <label for="jacobi-tolerance" class="form-label">Tolerance:</label>
+                    <input type="number" id="jacobi-tolerance" class="form-control" value="1e-6" step="1e-6">
+                </div>
+                <div class="form-group">
+                    <label for="jacobi-max-iter" class="form-label">Max Iterations:</label>
+                    <input type="number" id="jacobi-max-iter" class="form-control" value="100">
+                </div>
+                <button class="btn btn--primary" onclick="runJacobi()">Solve</button>
+            </div>
+        </div>
+
+        <!-- Gauss-Seidel Method -->
+        <div id="gauss-seidel" class="method-panel">
+            <h3>Gauss-Seidel Method</h3>
+            <p>Improved iterative method using most recent values</p>
+            <div class="input-form">
+                <div class="form-group">
+                    <label for="gs-tolerance" class="form-label">Tolerance:</label>
+                    <input type="number" id="gs-tolerance" class="form-control" value="1e-6" step="1e-6">
+                </div>
+                <div class="form-group">
+                    <label for="gs-max-iter" class="form-label">Max Iterations:</label>
+                    <input type="number" id="gs-max-iter" class="form-control" value="100">
+                </div>
+                <button class="btn btn--primary" onclick="runGaussSeidel()">Solve</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <div class="solution-display">
+            <h3>Solution</h3>
+            <div id="linear-solution"></div>
+        </div>
+        <div class="chart-container">
+            <h3>Convergence (for iterative methods)</h3>
+            <canvas id="linear-convergence-chart"></canvas>
+        </div>
+    </div>
+</section>
